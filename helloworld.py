@@ -10,11 +10,10 @@ test_set_array = test_set.data.numpy()
 
 print(train_set_array[0:1].flatten().shape)
 
-options = Marabou.createOptions(verbosity = 0)
-
-print("Imported from Julia - clean model")
+options = Marabou.createOptions(verbosity = 0, timeoutInSeconds=10)
 
 filename = 'resources/julia_clean.onnx'
+# filename = 'resources/julia_adv.onnx'
 network = Marabou.read_onnx(filename)
 
 inputVars = network.inputVars[0][0]
@@ -25,9 +24,10 @@ outputVars = network.outputVars[0][0]
 # print("outputVars: ", outputVars)
 
 epsilon = 0.1
-image = train_set_array[97:98].flatten() / 255
-# print("image shape: ", image.shape)
-correct_class = train_set.targets.numpy()[97]
+index = 4523
+image = train_set_array[index: index + 1].flatten() / 255
+
+correct_class = train_set.targets.numpy()[index]
 print("correct class: ", correct_class)
 
 
@@ -35,7 +35,7 @@ for i in range(len(inputVars)):
     network.setLowerBound(inputVars[i], max(image[i] - epsilon, 0))
     network.setUpperBound(inputVars[i], min(image[i] + epsilon, 1))
 
-margin = - 0.0001
+margin = -0.0001
 
 for i in range(len(outputVars)):
   print("i: ", i)
