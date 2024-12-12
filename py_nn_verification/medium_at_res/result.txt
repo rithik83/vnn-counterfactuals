@@ -1,0 +1,3 @@
+sat instances (adversarial perturbation found):  63
+timeouts (inconclusive):  122
+unsat instances (no perturbation found):  12

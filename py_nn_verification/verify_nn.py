@@ -3,14 +3,16 @@ import numpy as np
 import os
 
 # Loading up our counterfactual data
-arr = np.loadtxt("jl_counterfactual_generation/counterfactual_points/clean_cfs/data.csv", delimiter=",", skiprows=1)
+arr = np.loadtxt("jl_counterfactual_generation/counterfactual_points/medium_at_cfs/data_medium_at.csv", delimiter=",", skiprows=1)
 # arr = arr[17:187]
 
 # Loading/setting up our network on Marabou
-options = Marabou.createOptions(verbosity = 0, timeoutInSeconds=20)
-filename = 'models/classically_trained.onnx'
+options = Marabou.createOptions(verbosity = 0, timeoutInSeconds=10)
+# filename = 'models/classically_trained.onnx'
 # filename = 'models/adv_pgd_strong.onnx'
-# filename = 'models/adv_pgd_medium.onnx'
+# filename = 'models/adv_pgd_medstr.onnx'
+# filename = 'models/adv_pgd_med2.onnx'
+filename = 'models/adv_pgd_medium.onnx'
 # filename = 'models/adv_pgd_weak.onnx'
 
 # perturbation bound epsilon and margin for prediction
@@ -28,6 +30,7 @@ for (index, x) in enumerate(arr):
 
     image = x[0:784]
     target = int(x[784])
+    print(target)
     
     curr_timeouts = 0
     curr_unsat = 0
