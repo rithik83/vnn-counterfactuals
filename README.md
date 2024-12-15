@@ -13,6 +13,7 @@ The project combines **Julia** and **Python** implementations, providing capabil
 ## Project Structure
 
 ```
+├── data          # The folder that contains the MNIST data used to train the models
 ├── jl_counterfactual_generation
 │   ├── counterfactual_points/    # Generated counterfactual results
 │   ├── generate_counterfactuals.ipynb  # Jupyter notebook for counterfactual generation
@@ -34,8 +35,8 @@ The project combines **Julia** and **Python** implementations, providing capabil
 │   ├── weak_at_res/                  # Results of Weak AT verification
 │   └── verify_nn.py                  # Main script for verifying networks
 │
-├── resources/                        # Additional neural networks used during initial iterations
-├── utils/                            # Utility functions (plot)
+├── old_models/                        # Additional neural networks used during initial iterations (not for experiments)
+├── utils/                            # Utility function (plot)
 │
 ├── .gitignore                        # Git ignore file
 ├── helloworld.py                     # Python playground script to try out the solver
