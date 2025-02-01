@@ -1,0 +1,12 @@
+model:
+  onnx_path: models_new/model_10.onnx
+data:
+  dataset: Customized("custom_model_data", "custom_mnist")
+specification:
+  norm: .inf
+  epsilon: 0.05
+solver:
+  beta-crown:
+    lr_alpha: 0.01  # Learning rate for optimizing the alpha parameters, the default (0.01) is typically ok, but you can try to tune this parameter to get better lower bound.
+    lr_beta: 0.05  # Learning rate for optimizing the beta parameters, the default (0.05) is typically ok, but you can try to tune this parameter to get better lower bound.
+    iteration: 20 
